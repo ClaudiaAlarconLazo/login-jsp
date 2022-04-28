@@ -19,12 +19,28 @@
 		session.invalidate();
 	}
 	%>
-	
+	<div class="container">
+	<div class="row">
+	<div class="col-10 offset-2">
 	<form action="/Login/Session" method="post">
-  		User Name:<input type="text" name="nombre"/><br/>
-  		Password:<input type="password" name="password"/><br/>
-  		<input type="submit" value="submit"/>
+
+		<div class="mb-3">
+		<label for="nombre" class="form-label">Usuario</label>
+		<input type="text" class="form-control" name="nombre">
+		</div>
+		<div class="mb-3">
+		<label for="password" class="form-label">Password</label>
+		<input type="password" class="form-control" name="password">
+		</div>	
+		<div class="mb-3">
+		<input type="submit" value="Ingresar"/>
+		</div>	
+  		
 	</form>
+	</div>
+	</div>
+	</div>
+	
 
 </body>
 </html>

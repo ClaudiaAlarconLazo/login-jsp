@@ -17,12 +17,18 @@
 	<%ArrayList<Persona> personas = (ArrayList)application.getAttribute("listaGlobal"); %>
 
 
+	<div class="container">
+	<div class="row">
+	<div class="col-10 offset-2">
+	<% if(session.getAttribute("nombreSession") == null){%>
+		
+		<h4>No has iniciado sesión.</h4>
+
+	<%} else {%>
 	
-	<% if(session.getAttribute("nombreSession") == null){
-		out.print("No has iniciado sesión.");
-	} else {
-			out.print("Bienvenido: " + session.getAttribute("nombreSession"));
-	} %>
+		<h4>Bienvenido: <%=session.getAttribute("nombreSession")%></h4>
+
+	<%}%>
 	
 	
 	<table class="table">
@@ -47,10 +53,15 @@
 	  <%} %>
 	</table>
 	
-	<% } else {
-		out.print("No hay datos.");
-	} %>
+	<% } else {%>
+		
+		<h5>No hay datos.</h5>
+
+	<%}%>
 	
+	</div>
+	</div>
+	</div>
 
 </body>
 </html>
