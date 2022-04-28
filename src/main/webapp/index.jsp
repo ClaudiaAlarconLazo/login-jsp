@@ -4,39 +4,52 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>
 	<%@page import="cl.talentodigital.*"%>
 	<%@page import="java.util.ArrayList"%>
 	
-	<%ArrayList<Persona> personas = (ArrayList)session.getAttribute("listaGlobal"); %>
+	<%@include file="includes/menu.jsp" %>
+	
+	<%ArrayList<Persona> personas = (ArrayList)application.getAttribute("listaGlobal"); %>
 
 
 	
-	<% if(request.getParameter("nombre") == null){
+	<% if(session.getAttribute("nombreSession") == null){
 		out.print("No has iniciado sesión.");
 	} else {
-			out.print("Bienvenido: " + request.getParameter("nombre"));
+			out.print("Bienvenido: " + session.getAttribute("nombreSession"));
 	} %>
 	
-	<a href="/Login/login.jsp">Login</a>
-		
-	<%session.setAttribute("nombre", request.getParameter("nombre"));%>
 	
-
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Nombre</th>
+	      <th scope="col">Apellido</th>
+	      <th scope="col">edad</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<%if(personas != null ){
+		for(int i = 0; i < personas.size(); i++){%>
+	    <tr>
+	      <th><%=personas.get(i).getId()%></th>
+	      <td><%=personas.get(i).getNombre()%></td>
+	      <td><%=personas.get(i).getApellido()%></td>
+	      <td><%=personas.get(i).getEdad()%></td>
+	    </tr>
+	  </tbody>
+	  <%} %>
+	</table>
 	
-	<%if(personas != null ){
-		for(int i = 0; i < personas.size(); i++){
-			out.print(personas.get(i).getNombre());
-			out.print(personas.get(i).getApellido());
-			out.print(personas.get(i).getEdad());
-		}		
-	} else {
-		out.print("No hya datos.");
-	}
- %>
-	
+	<% } else {
+		out.print("No hay datos.");
+	} %>
 	
 
 </body>

@@ -10,27 +10,48 @@
 
 </head>
 <body>
-<div class="container">
-<div class="row">
-<div class="col-10 col-offset-2">
 
-<form class="p-3" action="AddPersona" method="post">
-<div class="mb-3">
-<label for="nombre" class="form-label">Nombre</label>
-<input type="text" class="form-control" name="nombreForm">
-</div>
-<div class="mb-3">
-<label for="apellido" class="form-label">Apellido</label>
-<input type="text" class="form-control" name="apellidoForm">
-</div>
-<div class="mb-3">
-<label for="edad" class="form-label">Edad</label>
-<input type="text" class="form-control" name="edadForm">
-</div>
+	<%@include file="includes/menu.jsp" %>
+	
+	<div class="container">
+	<div class="row">
+	<div class="col-10 offset-2">
 
+	
+	<%if(session.getAttribute("nombreSession") == null) { %>
+		<p>No has iniciado sesión.</p>
+		<a href="login.jsp" type="button" class="btn btn-primary">Iniciar sesión</a>
+	
+	<%} else if(session.getAttribute("nombreSession").equals("Administrador")){ %>
+	
+	<h3>Bienvenido <%=session.getAttribute("nombreSession") %></h3>
+	<form class="p-3" action="AddPersona" method="post">
+		<div class="mb-3">
+		<label for="nombre" class="form-label">Nombre</label>
+		<input type="text" class="form-control" name="nombreForm">
+		</div>
+		<div class="mb-3">
+		<label for="apellido" class="form-label">Apellido</label>
+		<input type="text" class="form-control" name="apellidoForm">
+		</div>
+		<div class="mb-3">
+		<label for="edad" class="form-label">Edad</label>
+		<input type="text" class="form-control" name="edadForm">
+		</div>
+		
+		
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	
+	<%} else if(!session.getAttribute("nombreSession").equals("Administrador")){%>
+		<p>Necesitas permisos de Administrador. Vuelve a iniciar sesión.</p>
+		<a href="logout.jsp" type="button" class="btn btn-primary">Cerrar sesión</a>
 
-<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+	<% } %>
+	
+
+	
+
 
 </div>
 </div>
