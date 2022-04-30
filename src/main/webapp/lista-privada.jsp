@@ -14,7 +14,7 @@
 	
 	<%@include file="includes/menu.jsp" %>
 	
-	<%ArrayList<Persona> personas = (ArrayList)application.getAttribute("listaGlobal"); %>
+	<%ArrayList<Persona> personas = (ArrayList)session.getAttribute("listaPrivada"); %>
 
 
 	<div class="container">
@@ -37,7 +37,7 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Nombre</th>
 	      <th scope="col">Apellido</th>
-	      <th scope="col">Edad</th>
+	      <th scope="col">edad</th>
 	    </tr>
 	  </thead>
 	  <tbody>

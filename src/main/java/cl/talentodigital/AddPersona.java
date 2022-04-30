@@ -39,30 +39,30 @@ public class AddPersona extends HttpServlet {
 		PrintWriter print = response.getWriter();
 		print.print("HOLA");
 		HttpSession session = request.getSession();
-		session.setAttribute("lista", Lista.personas);
+		session.setAttribute("listaPrivada", Lista.personasPrivada);
 		
 		ServletContext context = request.getServletContext();
-		context.setAttribute("listaGlobal", Lista.personas);
+		context.setAttribute("listaGlobal", Lista.personasGlobal);
 		
 		String nombreForm = request.getParameter("nombreForm");
 		String apellidoForm = request.getParameter("apellidoForm");
 		int edadForm = Integer.parseInt(request.getParameter("edadForm"));
-
-		agregarPersona(nombreForm, apellidoForm, edadForm, Lista.personas);
+		String global = request.getParameter("global");
+		
+		Persona persona = new Persona(nombreForm, apellidoForm, edadForm);
+		
+		if(global != null && global.equals("on")) {
+			Lista.personasGlobal.add(persona);
+			response.sendRedirect("index.jsp");
+		} else {
+			Lista.personasPrivada.add(persona);		
+			response.sendRedirect("lista-privada.jsp");
+		}
 
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
-		
-		doGet(request, response);
 	}
 	
 	
-	public static void agregarPersona(String nombre, String apellido, int edad, ArrayList<Persona> personas) {
-		Persona persona = new Persona(nombre, apellido, edad);
-		
-		personas.add(persona);
-		
-	}
+
 
 }

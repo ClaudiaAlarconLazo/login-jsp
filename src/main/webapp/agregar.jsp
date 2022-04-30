@@ -38,7 +38,13 @@
 		<label for="edad" class="form-label">Edad</label>
 		<input type="text" class="form-control" name="edadForm">
 		</div>
+		<div class="mb-3">
 		
+		<div class="form-check">
+		<input class="form-check-input" type="checkbox" value="on" id="flexCheckDefault" name="global">
+		<label class="form-check-label" for="flexCheckDefault">Lista Global</label>
+		</div>
+		</div>
 		
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
